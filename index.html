@@ -1,0 +1,40 @@
+<html>
+<head>
+    <!-- Yandex Games SDK -->
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+    <title>Explosive Coins
+    </title>
+</head>
+
+<body>
+    <script>
+        YaGames
+        .init()
+        .then(ysdk => {
+            console.log('Yandex SDK initialized!');
+            window.ysdk = ysdk;
+        });
+    </script>   
+    <tr><canvas id="myCanvas" width="4" height="3"> </canvas></tr>
+    <div>
+        <button onclick="reloadGame()">New Game</button> <br>
+    </div>
+
+    
+    
+    <script src = "importantThings.js"> </script>
+    <script src = "human.js"></script>
+    <script src = "gameObject.js"> </script>
+    <script src = "textObject.js"> </script>
+    <script src = "Item.js"> </script>
+    <!--<script src = "leaderboard.js"> </script>-->
+    <script src = "movable.js"> </script>
+    <script src = "health.js"> </script>
+    <script src = "explosion.js"> </script>
+    <script src = "player.js"> </script>
+    <script src = "enemy.js"> </script>
+    <script src = "main.js"> </script>
+    <link rel="stylesheet" href="style.css">
+</body>
+
+</html>
