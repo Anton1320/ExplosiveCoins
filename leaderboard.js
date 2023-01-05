@@ -1,21 +1,21 @@
 class Leaderboard {
     constructor() {
         this.background = new Item([screenSize.x, 0], [sc.offsetWidth-screenSize.x, screenSize.y], "lightblue", "leaderboard");
-        this.playerInfo = {rank: 0, publicName: "currently unavailable"};
+        this.playerInfo = {rank: 0, publicName: "currently unavailable", score: 0};
         this.topPlayers = [];
         for (let i = 0; i < 10; ++i) {
-            this.topPlayers.push({rank: 0, publicName: "currently unavailable"});
+            this.topPlayers.push({rank: 0, publicName: "currently unavailable", score: 0});
         }
         this.topPlayersTexts = [];
         for (let i = 0; i < 10; ++i) {
             this.topPlayersTexts.push(new textObject(
                 [this.background.pos.x+5, this.background.pos.y+20+40*i],
-                this.topPlayers[i].rank + " " + this.topPlayers[i].publicName,
+                this.topPlayers[i].rank + " " + this.topPlayers[i].publicName + " " + this.topPlayers[i].score,
                 "black",
                 ""));
         }
         this.playerRateText = new textObject([this.background.pos.x+5, this.background.pos.y+5+40*11],
-            this.playerInfo.rank + " " + this.playerInfo.publicName,
+            this.playerInfo.rank + " " + this.playerInfo.publicName + " " + this.playerInfo.score,
             "black",
             "");
 
@@ -23,9 +23,9 @@ class Leaderboard {
 
     updateText() {
         for (let i = 0; i < this.topPlayers.length; ++i) {
-            this.topPlayersTexts[i].text = this.topPlayers[i].rank + " " + this.topPlayers[i].publicName;
+            this.topPlayersTexts[i].text = this.topPlayers[i].rank + " " + this.topPlayers[i].publicName + " " + this.topPlayers[i].score;
         }
-        this.playerRateText.text = this.playerInfo.rank + " " + this.playerInfo.publicName;
+        this.playerRateText.text = this.playerInfo.rank + " " + this.playerInfo.publicName + " " + this.playerInfo.score;
     }
 
     draw() {
