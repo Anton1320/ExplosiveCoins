@@ -6,11 +6,11 @@ function randomInteger(min, max)
 
 var sc = document.getElementById("myCanvas");
 var ctx = sc.getContext("2d");
-sc.width = (document.documentElement.offsetHeight-50)*4/3;
+sc.width = document.documentElement.offsetWidth-50;
 sc.height = document.documentElement.offsetHeight-50;
-const screenSize = {x:sc.offsetWidth, y:sc.offsetHeight};
+const screenSize = {x:sc.offsetHeight*4/3, y:sc.offsetHeight};
 
-const objectsSize = sc.offsetWidth/40;
+const objectsSize = screenSize.x/40;
 
 const playerStartPos = [100, 100];
 const playerStartHp = 10;
