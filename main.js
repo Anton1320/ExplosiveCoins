@@ -14,6 +14,7 @@ var scoreText = new textObject([5, 15], '0', "black", 'scoreText');
 
 var hpText = new textObject([screenSize.x-30, 15], '10', "red", 'hpText')
 
+leaderboard = new Leaderboard();
 
 function spawnEnemy()
 {
@@ -93,7 +94,6 @@ function reloadGame()
     }
 
     explosions = [];
-    //leaderboard.style.display = "none";
 }
 
 
@@ -101,13 +101,18 @@ window.onload = function()
 {
 
     var timer = 0;
-
+    var global_time = 0;
     var t = setInterval(function()
     {
         if (!running)
         {
             clearInterval(t);
         }
+        if (global_time % 1000 == 0) {
+            ysdk_get_score();
+            ysdk_get_leaders();
+        }
+        global_time++;
         if (alive) {
             timer++;
             for (let enemy of enemys)
@@ -119,7 +124,7 @@ window.onload = function()
                 spawnEnemy();
                 timer = 0;
             }
-            ctx.clearRect(0, 0, screenSize.x, screenSize.y);
+            ctx.clearRect(0, 0, sc.offsetWidth, sc.offsetHeight);
             
             for (let health of healths)
             {
@@ -174,7 +179,6 @@ window.onload = function()
     
             if (player.hp <= 0) {
                 alive = 0;
-                //leaderboard.style.display = "block";
             }
     
     
@@ -193,8 +197,7 @@ window.onload = function()
             hpText.draw();
             scoreText.draw();
         }
-        else { // игра не идет. должны показываться рекорд пользователя и таблица лидеров
-
-        }
+        leaderboard.updateText();
+        leaderboard.draw();
     }, 0);
 };
