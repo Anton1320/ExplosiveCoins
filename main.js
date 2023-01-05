@@ -179,6 +179,11 @@ window.onload = function()
     
             if (player.hp <= 0) {
                 alive = 0;
+                ysdk_get_score();
+                ysdk_get_leaders();
+                if (player.score > leaderboard.playerInfo.score) {
+                    ysdk_set_score(player.score);
+                }
             }
     
     
