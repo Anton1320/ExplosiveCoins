@@ -94,12 +94,24 @@ function reloadGame()
     }
 
     explosions = [];
+    ysdk_get_leaders();
+    ysdk_get_score();
+    ysdk_get_human_score();
+    if (humanMaxScore > leaderboard.playerInfo.score) {
+        ysdk_set_score(humanMaxScore);   
+    }
+    else {
+        ysdk_set_human_score(leaderboard.playerInfo.score);
+    }
 }
 
 
 window.onload = function()
 {
-
+    ysdk_get_leaders();
+    ysdk_get_score();
+    ysdk_get_human_score();
+    
     var timer = 0;
     var global_time = 0;
     var t = setInterval(function()
@@ -107,10 +119,6 @@ window.onload = function()
         if (!running)
         {
             clearInterval(t);
-        }
-        if (global_time % 1000 == 0) {
-            ysdk_get_score();
-            ysdk_get_leaders();
         }
         global_time++;
         if (alive) {
@@ -180,9 +188,15 @@ window.onload = function()
             if (player.hp <= 0) {
                 alive = 0;
                 ysdk_get_score();
+                ysdk_get_human_score();
+
                 ysdk_get_leaders();
                 if (player.score > leaderboard.playerInfo.score) {
                     ysdk_set_score(player.score);
+                }
+                if (player.score > humanMaxScore) {
+                    humanMaxScore = player.score;
+                    ysdk_set_human_score(humanMaxScore);
                 }
             }
     
