@@ -1,27 +1,17 @@
-var human;
+var humanMaxScore = 0;
 
-function initPlayer() {
-    return ysdk.getPlayer().then(_player => {
-            human = _player;
-
-            return human;
-        });
+function ysdk_set_human_score(score) {
+    YaGames.init().then(ysdk => {
+        ysdk.getPlayer().then(_player => {
+            _player.setStats({"maxScore": score});
+        })
+    })
 }
 
-YaGames.init().then(ysdk => {
-    initPlayer().then(_player => {
-        if (_player.getMode() === 'lite') {
-            // Игрок не авторизован.
-            ysdk.auth.openAuthDialog().then(() => {
-                    // Игрок успешно авторизован
-                    initPlayer().catch(err => {
-                        // Ошибка при инициализации объекта Player.
-                    });
-                }).catch(() => {
-                    // Игрок не авторизован.
-                });
-        }
-    }).catch(err => {
-        // Ошибка при инициализации объекта Player.
-    });
-}) 
+function ysdk_get_human_score(score) {
+    YaGames.init().then(ysdk => {
+        ysdk.getPlayer().then(_player => {
+            _player.getStats(["maxScore"]).then(ans => humanMaxScore = ans.maxScore);
+        })
+    })
+}
