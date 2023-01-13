@@ -75,9 +75,12 @@ document.onkeyup = function(event)
 
 var running = true;
 var alive = false;
+var attempt = 1;
 
 function reloadGame()
 {
+    attempt++;
+
     player.pos = {x: playerStartPos[0], y: playerStartPos[1]}
     player.hp = playerStartHp;
     player.score = 1;
@@ -111,16 +114,16 @@ window.onload = function()
     ysdk_get_leaders();
     ysdk_get_score();
     ysdk_get_human_score();
-    
+    YaGames.init().then(ysdk => ysdk.adv.showFullscreenAdv())
+
     var timer = 0;
-    var global_time = 0;
+    
     var t = setInterval(function()
     {
         if (!running)
         {
             clearInterval(t);
         }
-        global_time++;
         if (alive) {
             timer++;
             for (let enemy of enemys)
@@ -198,6 +201,7 @@ window.onload = function()
                     humanMaxScore = player.score;
                     ysdk_set_human_score(humanMaxScore);
                 }
+                if (attempt%5 == 0) YaGames.init().then(ysdk => ysdk.adv.showFullscreenAdv())
             }
     
     
