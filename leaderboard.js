@@ -26,8 +26,8 @@ class Leaderboard {
             if (this.topPlayers[i].player.publicName == "-") this.topPlayersTexts[i].text = "-";
             else this.topPlayersTexts[i].text = this.topPlayers[i].rank + " " + this.topPlayers[i].player.publicName + " " + this.topPlayers[i].score;
         }
-        if (this.playerInfo.player.publicName == "-") this.playerRateText.text = "-";
-        else this.playerRateText.text = this.playerInfo.rank + " " + this.playerInfo.player.publicName + " " + this.playerInfo.score;
+        if (this.playerInfo.player.publicName == "-") this.playerRateText.text = "- " + humanMaxScore;
+        else this.playerRateText.text = this.playerInfo.rank + " " + this.playerInfo.player.publicName + " " + Math.max(this.playerInfo.score, humanMaxScore);
     }
 
     draw() {
