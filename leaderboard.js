@@ -75,9 +75,9 @@ function ysdk_get_leaders() {
         ysdk.getLeaderboards()
         .then(lb => {
             // Получение 10 топов
-            lb.getLeaderboardEntries('main', { quantityTop: 10 })
+            lb.getLeaderboardEntries('main', {includeUser: true, quantityTop: 10 })
             .then(res => {
-                for (let i = 0; i < res.ranges.length; ++i) {
+                for (let i = 0; i < res.entries.length; ++i) {
                     if (res.entries[i].rank <= 10) leaderboard.topPlayers[res.entries[i].rank-1] = res.entries[i];
                 }
             })
