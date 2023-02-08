@@ -43,22 +43,22 @@ function spawnEnemy()
 
 document.onkeydown = function(event)
 {
-    if (event.code == 'ArrowUp')
+    if (event.code == 'ArrowUp' || event.code == 'KeyW')
     {
         player.moveArray.Up = true;
         player.direction = {Up:true, Down:false, Left:false, Right:false};
     }
-    if (event.code == 'ArrowDown')
+    if (event.code == 'ArrowDown' || event.code == 'KeyS')
     {
         player.moveArray.Down = true;
         player.direction = {Up:false, Down:true, Left:false, Right:false};
     }
-    if (event.code == 'ArrowLeft')
+    if (event.code == 'ArrowLeft' || event.code == 'KeyA')
     {
         player.moveArray.Left = true;
         player.direction = {Up:false, Down:false, Left:true, Right:false};
     }
-    if (event.code == 'ArrowRight')
+    if (event.code == 'ArrowRight' || event.code == 'KeyD')
     {
         player.moveArray.Right = true;
         player.direction = {Up:false, Down:false, Left:false, Right:true};
@@ -67,10 +67,10 @@ document.onkeydown = function(event)
 
 document.onkeyup = function(event)
 {
-    if (event.code == 'ArrowUp') player.moveArray.Up = false;
-    if (event.code == 'ArrowDown') player.moveArray.Down = false;
-    if (event.code == 'ArrowLeft') player.moveArray.Left = false;
-    if (event.code == 'ArrowRight') player.moveArray.Right = false;
+    if (event.code == 'ArrowUp' || event.code == 'KeyW') player.moveArray.Up = false;
+    if (event.code == 'ArrowDown' || event.code == 'KeyS') player.moveArray.Down = false;
+    if (event.code == 'ArrowLeft' || event.code == 'KeyA') player.moveArray.Left = false;
+    if (event.code == 'ArrowRight' || event.code == 'KeyD') player.moveArray.Right = false;
 }
 
 var running = true;
